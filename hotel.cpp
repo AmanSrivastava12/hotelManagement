@@ -99,3 +99,34 @@ cout<<"\nType Comfort (S/N) "<<tempRoom.type;
 cout<<"\nType Size (B/S) "<<tempRoom.stype;
 cout<<"\nRent: "<<tempRoom.rent;
 }
+
+//hotel management class
+class HotelMgnt:protected Room
+{
+public:
+void checkIn();
+void getAvailRoom();
+void searchCustomer(char *);
+void checkOut(int);
+void guestSummaryReport();
+};
+
+
+void HotelMgnt::guestSummaryReport(){
+
+if(count==0){
+	cout<<"\n No Guest in Hotel !!";
+}	
+for(int i=0;i<count;i++)
+{
+if(rooms[i].status==1)
+{
+cout<<"\n Customer First Name : "<<rooms[i].cust.name;
+cout<<"\n Room Number : "<<rooms[i].roomNumber;
+cout<<"\n Address (only city) : "<<rooms[i].cust.address;
+cout<<"\n Phone : "<<rooms[i].cust.phone;
+cout<<"\n---------------------------------------";	
+}	
+}
+getch();
+}
