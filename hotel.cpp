@@ -185,3 +185,26 @@ cout<<"\n Customer Checked-in Successfully..";
 getch();
 }
 }
+
+//hotel management shows available rooms
+void HotelMgnt::getAvailRoom()
+{
+int i,found=0;
+for(i=0;i<count;i++)
+{
+if(rooms[i].status==0)
+{
+displayRoom(rooms[i]);
+cout<<"\n\nPress enter for next room";
+found=1;
+getch();
+}
+}
+if(found==0)
+{
+cout<<"\nAll rooms are reserved";
+getch();
+}
+}
+
+
