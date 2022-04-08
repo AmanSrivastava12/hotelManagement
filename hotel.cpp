@@ -207,4 +207,28 @@ getch();
 }
 }
 
+//hotel management shows all persons that have booked room
+void HotelMgnt::searchCustomer(char *pname)
+{
+int i,found=0;
+for(i=0;i<count;i++)
+{
+if(rooms[i].status==1 && stricmp(rooms[i].cust.name,pname)==0)
+{
+cout<<"\nCustomer Name: "<<rooms[i].cust.name;
+cout<<"\nRoom Number: "<<rooms[i].roomNumber;
+
+cout<<"\n\nPress enter for next record";
+found=1;
+getch();
+}
+}
+if(found==0)
+{
+cout<<"\nPerson not found.";
+getch();
+}
+}
+
+
 
