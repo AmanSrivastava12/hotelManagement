@@ -230,5 +230,41 @@ getch();
 }
 }
 
+//hotel managemt generates the bill of the expenses
+void HotelMgnt::checkOut(int roomNum)
+{
+int i,found=0,days,rno;
+float billAmount=0;
+for(i=0;i<count;i++)
+{
+if(rooms[i].status==1 && rooms[i].roomNumber==roomNum)
+{
+//rno = rooms[i].roomNumber;
+found=1;
+//getch();
+break;
+}
+}
+if(found==1)
+{
+cout<<"\nEnter Number of Days:\t";
+cin>>days;
+billAmount=days * rooms[i].rent;
+
+cout<<"\n\t######## CheckOut Details ########\n";
+cout<<"\nCustomer Name : "<<rooms[i].cust.name;
+cout<<"\nRoom Number : "<<rooms[i].roomNumber;
+cout<<"\nAddress : "<<rooms[i].cust.address;
+cout<<"\nPhone : "<<rooms[i].cust.phone;
+cout<<"\nTotal Amount Due : "<<billAmount<<" /";
+cout<<"\nAdvance Paid: "<<rooms[i].cust.payment_advance<<" /";
+cout<<"\n*** Total Payable: "<<billAmount-rooms[i].cust.payment_advance<<"/ only";
+
+rooms[i].status=0;
+}
+getch();
+}
+
+
 
 
