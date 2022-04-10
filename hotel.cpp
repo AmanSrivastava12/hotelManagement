@@ -265,6 +265,69 @@ rooms[i].status=0;
 getch();
 }
 
+//managing rooms (adding and searching available rooms)
+void manageRooms()
+{
+class Room room;
+int opt,rno,i,flag=0;
+char ch;
+do
+{
+system("cls");
+cout<<"\n### Manage Rooms ###";
+cout<<"\n1. Add Room";
+cout<<"\n2. Search Room";
+cout<<"\n3. Back to Main Menu";
+cout<<"\n\nEnter Option: ";
+cin>>opt;
 
+
+//switch statement
+switch(opt)
+{
+case 1:
+cout<<"\nEnter Room Number: ";
+cin>>rno;
+i=0;
+for(i=0;i<count;i++)
+{
+if(rooms[i].roomNumber==rno)
+{
+flag=1;
+}
+}
+if(flag==1)
+{
+cout<<"\nRoom Number is Present.\nPlease enter unique Number";
+flag=0;
+getch();
+}
+else
+{
+rooms[count]=room.addRoom(rno);
+count++;
+}
+break;
+case 2:
+cout<<"\nEnter room number: ";
+cin>>rno;
+room.searchRoom(rno);
+break;
+case 3:
+//nothing to do
+break;
+default:
+cout<<"\nPlease Enter correct option";
+break;
+}
+}while(opt!=3);
+}
+using namespace std;
+int main()
+{
+class HotelMgnt hm;
+int i,j,opt,rno;
+char ch;
+char pname[100];
 
 
