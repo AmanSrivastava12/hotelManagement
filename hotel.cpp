@@ -1,7 +1,6 @@
 #include<iostream>
 #include<string.h>
 #include<conio.h>
-
 #define max 100
 using namespace std;
 
@@ -44,7 +43,7 @@ Room Room::addRoom(int rno)
 {
 class Room room;
 room.roomNumber=rno;
-cout<<"\nType AC/Non-AC (A/N) : ";
+cout<<"\nType AC/Non-AC (A/N)";
 cin>>room.ac;
 cout<<"\nType Comfort (S/N) : ";
 cin>>room.type;
@@ -53,7 +52,6 @@ cin>>room.stype;
 cout<<"\nDaily Rent : ";
 cin>>room.rent;
 room.status=0;
-
 cout<<"\n Room Added Successfully!";
 getch();
 return room;
@@ -75,7 +73,7 @@ if(found==1)
 cout<<"Room Details\n";
 if(rooms[i].status==1)
 {
-cout<<"\nRoom is Reserved";
+cout<<"\nRoom is reserved";
 }
 else
 {
@@ -114,8 +112,9 @@ void guestSummaryReport();
 
 void HotelMgnt::guestSummaryReport(){
 
-if(count==0){
-	cout<<"\n No Guest in Hotel !!";
+if(count==0)
+{
+	cout<<"\n No Guest present in Hotel!";
 }	
 for(int i=0;i<count;i++)
 {
@@ -125,12 +124,11 @@ cout<<"\n Customer First Name : "<<rooms[i].cust.name;
 cout<<"\n Room Number : "<<rooms[i].roomNumber;
 cout<<"\n Address (only city) : "<<rooms[i].cust.address;
 cout<<"\n Phone : "<<rooms[i].cust.phone;
-cout<<"\n---------------------------------------";	
+cout<<"\n";	
 }	
 }
 getch();
 }
-
 
 //hotel management reservation of room
 void HotelMgnt::checkIn()
@@ -156,32 +154,22 @@ cout<<"\nRoom is already Booked";
 getch();
 return;
 }
-
 cout<<"\nEnter booking id: ";
 cin>>rooms[i].cust.booking_id;
-
 cout<<"\nEnter Customer Name (First Name): ";
 cin>>rooms[i].cust.name;
-
-cout<<"\nEnter Address (only city): ";
+cout<<"\nEnter Address (only city required): ";
 cin>>rooms[i].cust.address;
-
 cout<<"\nEnter Phone: ";
 cin>>rooms[i].cust.phone;
-
-cout<<"\nEnter From Date: ";
+cout<<"\nEnter from Date: ";
 cin>>rooms[i].cust.from_date;
-
-cout<<"\nEnter to  Date: ";
+cout<<"\nEnter to Date: ";
 cin>>rooms[i].cust.to_date;
-
-
 cout<<"\nEnter Advance Payment: ";
 cin>>rooms[i].cust.payment_advance;
-
 rooms[i].status=1;
-
-cout<<"\n Customer Checked-in Successfully..";
+cout<<"\nCustomer checked-in successfully.";
 getch();
 }
 }
@@ -217,8 +205,7 @@ if(rooms[i].status==1 && stricmp(rooms[i].cust.name,pname)==0)
 {
 cout<<"\nCustomer Name: "<<rooms[i].cust.name;
 cout<<"\nRoom Number: "<<rooms[i].roomNumber;
-
-cout<<"\n\nPress enter for next record";
+cout<<"\n\nPress enter for the next record";
 found=1;
 getch();
 }
@@ -230,7 +217,7 @@ getch();
 }
 }
 
-//hotel managemt generates the bill of the expenses
+//hotel management generates the bill of the expenses
 void HotelMgnt::checkOut(int roomNum)
 {
 int i,found=0,days,rno;
@@ -250,16 +237,14 @@ if(found==1)
 cout<<"\nEnter Number of Days:\t";
 cin>>days;
 billAmount=days * rooms[i].rent;
-
-cout<<"\n\t######## CheckOut Details ########\n";
+cout<<"\n\tHere are the checkout details of the customer :\n";
 cout<<"\nCustomer Name : "<<rooms[i].cust.name;
 cout<<"\nRoom Number : "<<rooms[i].roomNumber;
 cout<<"\nAddress : "<<rooms[i].cust.address;
 cout<<"\nPhone : "<<rooms[i].cust.phone;
 cout<<"\nTotal Amount Due : "<<billAmount<<" /";
-cout<<"\nAdvance Paid: "<<rooms[i].cust.payment_advance<<" /";
-cout<<"\n*** Total Payable: "<<billAmount-rooms[i].cust.payment_advance<<"/ only";
-
+cout<<"\nAdvance Paid : "<<rooms[i].cust.payment_advance<<" /";
+cout<<"\nTotal Payable: "<<billAmount-rooms[i].cust.payment_advance<<"/ only";
 rooms[i].status=0;
 }
 getch();
@@ -274,15 +259,11 @@ char ch;
 do
 {
 system("cls");
-cout<<"\n### Manage Rooms ###";
 cout<<"\n1. Add Room";
 cout<<"\n2. Search Room";
 cout<<"\n3. Back to Main Menu";
 cout<<"\n\nEnter Option: ";
 cin>>opt;
-
-
-//switch statement
 switch(opt)
 {
 case 1:
@@ -298,7 +279,7 @@ flag=1;
 }
 if(flag==1)
 {
-cout<<"\nRoom Number is Present.\nPlease enter unique Number";
+cout<<"\nRoom Number is Present.\nPlease enter a unique Number";
 flag=0;
 getch();
 }
@@ -314,10 +295,9 @@ cin>>rno;
 room.searchRoom(rno);
 break;
 case 3:
-//nothing to do
 break;
 default:
-cout<<"\nPlease Enter correct option";
+cout<<"\nPlease enter a correct option";
 break;
 }
 }while(opt!=3);
@@ -330,16 +310,15 @@ int i,j,opt,rno;
 char ch;
 char pname[100];
 system("cls");
-
 do
 {
 system("cls");
-cout<<"######## Hotel Management #########\n";
+cout<<"Hotel Management System\n";
 cout<<"\n1. Manage Rooms";
-cout<<"\n2. Check-In Room";
-cout<<"\n3. Available Rooms";
-cout<<"\n4. Search Customer";
-cout<<"\n5. Check-Out Room";
+cout<<"\n2. Room check-in";
+cout<<"\n3. Rooms available";
+cout<<"\n4. Search a specific Customer";
+cout<<"\n5. Room check-out";
 cout<<"\n6. Guest Summary Report";
 cout<<"\n7. Exit";
 cout<<"\n\nEnter Option: ";
@@ -397,14 +376,13 @@ case 6:
 hm.guestSummaryReport();	
 break;
 case 7:
-cout<<"\nTHANK YOU! FOR USING SOFTWARE";
+cout<<"\nTHANK YOU!";
 break;
 default:
-cout<<"\nPlease Enter correct option";
+cout<<"\nPlease enter a correct option";
 break;
 }
 }while(opt!=7);
-
 getch();
 }
 
