@@ -43,16 +43,16 @@ Room Room::addRoom(int rno)
 {
 class Room room;
 room.roomNumber=rno;
-cout<<"\nType AC/Non-AC (A/N)";
+cout<<"\nEnter Conditioning System\n(A - AC Room, N - Non-AC Room) : ";
 cin>>room.ac;
-cout<<"\nType Comfort (S/N) : ";
+cout<<"\nEnter Service Type\n(W - World Class Service, B - Budget Service) : ";
 cin>>room.type;
-cout<<"\nType Size (B/S) : ";
+cout<<"\nEnter Size\n(L - Luxury Room, S - Standard Room) : ";
 cin>>room.stype;
 cout<<"\nDaily Rent : ";
 cin>>room.rent;
 room.status=0;
-cout<<"\n Room Added Successfully!";
+cout<<"\nRoom Added Successfully!";
 getch();
 return room;
 }
@@ -70,32 +70,41 @@ break;
 }
 if(found==1)
 {
-cout<<"Room Details\n";
 if(rooms[i].status==1)
 {
-cout<<"\nRoom is reserved";
+cout<<"\nRoom is reserved.";
 }
 else
 {
-cout<<"\nRoom is available";
+cout<<"\nRoom is available.";
 }
+cout<<"\nRoom Details are :\n";
 displayRoom(rooms[i]);
 getch();
 }
 else
 {
-cout<<"\nRoom not found";
+cout<<"\nRoom could not be found.";
 getch();
 }
 }
 
 void Room::displayRoom(Room tempRoom)
 {
-cout<<"\nRoom Number: \t"<<tempRoom.roomNumber;
-cout<<"\nType AC/Non-AC (A/N) "<<tempRoom.ac;
-cout<<"\nType Comfort (S/N) "<<tempRoom.type;
-cout<<"\nType Size (B/S) "<<tempRoom.stype;
-cout<<"\nRent: "<<tempRoom.rent;
+cout<<"\nRoom Number : "<<tempRoom.roomNumber;
+if(tempRoom.ac == 'A')
+cout<<"\nAir Conditioned Room";
+else
+cout<<"\nNon-air Conditioned Room";
+if(tempRoom.type == 'W')
+cout<<"\nWorld Class Room Service";
+else
+cout<<"\nBudget Room Service";
+if(tempRoom.stype == 'L')
+cout<<"\nLuxury Room";
+else
+cout<<"\nStandard Room";
+cout<<"\nRent per day : "<<tempRoom.rent;
 }
 
 //hotel management class
@@ -130,13 +139,12 @@ cout<<"\n";
 getch();
 }
 
-//hotel management reservation of room
 void HotelMgnt::checkIn()
 {
 int i,found=0,rno;
 
 class Room room;
-cout<<"\nEnter Room number : ";
+cout<<"\nEnter Room Number : ";
 cin>>rno;
 for(i=0;i<count;i++)
 {
@@ -150,26 +158,31 @@ if(found==1)
 {
 if(rooms[i].status==1)
 {
-cout<<"\nRoom is already Booked";
+cout<<"\nRoom is already booked.";
 getch();
 return;
 }
-cout<<"\nEnter booking id: ";
+cout<<"\nEnter Booking ID : ";
 cin>>rooms[i].cust.booking_id;
-cout<<"\nEnter Customer Name (First Name): ";
+cout<<"\nEnter Customer Name\n(only first name required) : ";
 cin>>rooms[i].cust.name;
-cout<<"\nEnter Address (only city required): ";
+cout<<"\nEnter Address\n(only city required) : ";
 cin>>rooms[i].cust.address;
-cout<<"\nEnter Phone: ";
+cout<<"\nEnter Phone Number : ";
 cin>>rooms[i].cust.phone;
-cout<<"\nEnter from Date: ";
+cout<<"\nEnter Booking Date : ";
 cin>>rooms[i].cust.from_date;
-cout<<"\nEnter to Date: ";
+cout<<"\nEnter Checkout Date : ";
 cin>>rooms[i].cust.to_date;
-cout<<"\nEnter Advance Payment: ";
+cout<<"\nEnter Advance Payment : ";
 cin>>rooms[i].cust.payment_advance;
 rooms[i].status=1;
 cout<<"\nCustomer checked-in successfully.";
+getch();
+}
+else
+{
+cout<<"\nRoom Number "<<rno<<" is not present.\n";
 getch();
 }
 }
@@ -259,10 +272,10 @@ char ch;
 do
 {
 system("cls");
-cout<<"\n1. Add Room";
-cout<<"\n2. Search Room";
-cout<<"\n3. Back to Main Menu";
-cout<<"\n\nEnter Option: ";
+cout<<"Enter\n1. Add a Room";
+cout<<"\n2. Search a Room";
+cout<<"\n3. Return back to Main Menu";
+cout<<"\n\nEnter your choice : ";
 cin>>opt;
 switch(opt)
 {
@@ -279,7 +292,7 @@ flag=1;
 }
 if(flag==1)
 {
-cout<<"\nRoom Number is Present.\nPlease enter a unique Number";
+cout<<"\nRoom Number is already present. Please enter a unique number";
 flag=0;
 getch();
 }
@@ -290,18 +303,19 @@ count++;
 }
 break;
 case 2:
-cout<<"\nEnter room number: ";
+cout<<"\nEnter Room Number: ";
 cin>>rno;
 room.searchRoom(rno);
 break;
 case 3:
 break;
 default:
-cout<<"\nPlease enter a correct option";
+cout<<"\nPlease enter a correct choice";
 break;
 }
 }while(opt!=3);
 }
+
 using namespace std;
 int main()
 {
@@ -331,7 +345,7 @@ break;
 case 2:
 if(count==0)
 {
-cout<<"\nRooms data is not available.\nPlease add the rooms first.";
+cout<<"\nPlease add the rooms first!";
 getch();
 }
 else
