@@ -132,7 +132,7 @@ if(rooms[i].status==1)
 cout<<"\n Customer First Name : "<<rooms[i].cust.name;
 cout<<"\n Room Number : "<<rooms[i].roomNumber;
 cout<<"\n Address (only city) : "<<rooms[i].cust.address;
-cout<<"\n Phone : "<<rooms[i].cust.phone;
+cout<<"\n Phone Number: "<<rooms[i].cust.phone;
 cout<<"\n";	
 }	
 }
@@ -196,14 +196,14 @@ for(i=0;i<count;i++)
 if(rooms[i].status==0)
 {
 displayRoom(rooms[i]);
-cout<<"\n\nPress enter for next room";
+cout<<"\n\nPress enter for next room details.\n(if available)\n";
 found=1;
 getch();
 }
 }
 if(found==0)
 {
-cout<<"\nAll rooms are reserved";
+cout<<"\nSorry! All rooms are reserved.";
 getch();
 }
 }
@@ -216,16 +216,16 @@ for(i=0;i<count;i++)
 {
 if(rooms[i].status==1 && stricmp(rooms[i].cust.name,pname)==0)
 {
-cout<<"\nCustomer Name: "<<rooms[i].cust.name;
-cout<<"\nRoom Number: "<<rooms[i].roomNumber;
-cout<<"\n\nPress enter for the next record";
+cout<<"\nCustomer's Name : "<<rooms[i].cust.name;
+cout<<"\nRoom Number booked : "<<rooms[i].roomNumber;
+cout<<"\n\nPress enter for the next record.\n(if present)\n";
 found=1;
 getch();
 }
 }
 if(found==0)
 {
-cout<<"\nPerson not found.";
+cout<<"\nSorry! No room booking found with the given customer name.";
 getch();
 }
 }
@@ -239,27 +239,33 @@ for(i=0;i<count;i++)
 {
 if(rooms[i].status==1 && rooms[i].roomNumber==roomNum)
 {
-//rno = rooms[i].roomNumber;
 found=1;
-//getch();
 break;
+}
+else if(rooms[i].status==0 && rooms[i].roomNumber==roomNum)
+{
+found=2;
 }
 }
 if(found==1)
 {
-cout<<"\nEnter Number of Days:\t";
+cout<<"\nEnter Number of Days : ";
 cin>>days;
 billAmount=days * rooms[i].rent;
-cout<<"\n\tHere are the checkout details of the customer :\n";
+cout<<"\nHere are the checkout details of the customer :\n";
 cout<<"\nCustomer Name : "<<rooms[i].cust.name;
 cout<<"\nRoom Number : "<<rooms[i].roomNumber;
 cout<<"\nAddress : "<<rooms[i].cust.address;
-cout<<"\nPhone : "<<rooms[i].cust.phone;
-cout<<"\nTotal Amount Due : "<<billAmount<<" /";
-cout<<"\nAdvance Paid : "<<rooms[i].cust.payment_advance<<" /";
-cout<<"\nTotal Payable: "<<billAmount-rooms[i].cust.payment_advance<<"/ only";
+cout<<"\nPhone Number : "<<rooms[i].cust.phone;
+cout<<"\nTotal Amount Due : "<<billAmount<<"/-";
+cout<<"\nAdvance Paid : "<<rooms[i].cust.payment_advance<<"/-";
+cout<<"\n\nTotal Payable Amount : "<<billAmount-rooms[i].cust.payment_advance<<"/-";
 rooms[i].status=0;
 }
+else if(found==2)
+cout<<"\nRoom Number "<<roomNum<<" is not booked.";
+else
+cout<<"\nRoom Number "<<roomNum<<" is not present.";
 getch();
 }
 
@@ -327,11 +333,11 @@ system("cls");
 do
 {
 system("cls");
-cout<<"Hotel Management System\n";
+cout<<"HOTEL MANAGEMENT SYSTEM\n";
 cout<<"\n1. Manage Rooms";
 cout<<"\n2. Room check-in";
-cout<<"\n3. Rooms available";
-cout<<"\n4. Search a specific Customer";
+cout<<"\n3. Display available rooms";
+cout<<"\n4. Search for a specific customer";
 cout<<"\n5. Room check-out";
 cout<<"\n6. Guest Summary Report";
 cout<<"\n7. Exit";
@@ -354,7 +360,7 @@ break;
 case 3:
 if(count==0)
 {
-cout<<"\nRooms data is not available.\nPlease add the rooms first.";
+cout<<"\nPlease add the rooms first if you want to search for availability.";
 getch();
 }
 else
@@ -363,12 +369,12 @@ break;
 case 4:
 if(count==0)
 {
-cout<<"\nRooms are not available.\nPlease add the rooms first.";
+cout<<"\nPlease add the rooms first if you want to search for customers.";
 getch();
 }
 else
 {
-cout<<"Enter Customer Name: ";
+cout<<"\nEnter Customer's Name : ";
 cin>>pname;
 hm.searchCustomer(pname);
 }
@@ -376,12 +382,12 @@ break;
 case 5:
 if(count==0)
 {
-cout<<"\nRooms are not available.\nPlease add the rooms first.";
+cout<<"\nPlease add the rooms first if you want to check-out of a specific room";
 getch();
 }
 else
 {
-cout<<"Enter Room Number : ";
+cout<<"\nEnter Room Number : ";
 cin>>rno;
 hm.checkOut(rno);
 }
