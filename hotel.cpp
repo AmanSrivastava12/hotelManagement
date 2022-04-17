@@ -4,7 +4,6 @@
 #define max 100
 using namespace std;
 
-//Class Customer
 class Customer
 {
 public:
@@ -16,7 +15,6 @@ char to_date[20];
 float payment_advance;
 int booking_id;
 };
-
 
 class Room
 {
@@ -35,7 +33,6 @@ void deleteRoom(int);
 void displayRoom(Room);
 };
 
-//Global Declarations
 class Room rooms[max];
 int count=0;
 
@@ -107,7 +104,6 @@ cout<<"\nStandard Room";
 cout<<"\nRent per day : "<<tempRoom.rent;
 }
 
-//hotel management class
 class HotelMgnt:protected Room
 {
 public:
@@ -118,25 +114,27 @@ void checkOut(int);
 void guestSummaryReport();
 };
 
-
 void HotelMgnt::guestSummaryReport(){
-
 if(count==0)
 {
-	cout<<"\n No Guest present in Hotel!";
-}	
+cout<<"\nNo Guest is currently present in our hotel.";
+}
+else
+{
+cout<<"\nList of guests currently present in our hotel are : \n";
 for(int i=0;i<count;i++)
 {
 if(rooms[i].status==1)
 {
-cout<<"\n Customer First Name : "<<rooms[i].cust.name;
-cout<<"\n Room Number : "<<rooms[i].roomNumber;
-cout<<"\n Address (only city) : "<<rooms[i].cust.address;
-cout<<"\n Phone Number: "<<rooms[i].cust.phone;
+cout<<"\nCustomer Name : "<<rooms[i].cust.name;
+cout<<"\nRoom Number : "<<rooms[i].roomNumber;
+cout<<"\nAddress : "<<rooms[i].cust.address;
+cout<<"\nPhone Number : "<<rooms[i].cust.phone;
 cout<<"\n";	
 }	
 }
 getch();
+}
 }
 
 void HotelMgnt::checkIn()
@@ -187,7 +185,6 @@ getch();
 }
 }
 
-//hotel management shows available rooms
 void HotelMgnt::getAvailRoom()
 {
 int i,found=0;
@@ -208,7 +205,6 @@ getch();
 }
 }
 
-//hotel management shows all persons that have booked room
 void HotelMgnt::searchCustomer(char *pname)
 {
 int i,found=0;
@@ -230,7 +226,6 @@ getch();
 }
 }
 
-//hotel management generates the bill of the expenses
 void HotelMgnt::checkOut(int roomNum)
 {
 int i,found=0,days,rno;
@@ -269,7 +264,6 @@ cout<<"\nRoom Number "<<roomNum<<" is not present.";
 getch();
 }
 
-//managing rooms (adding and searching available rooms)
 void manageRooms()
 {
 class Room room;
@@ -339,9 +333,9 @@ cout<<"\n2. Room check-in";
 cout<<"\n3. Display available rooms";
 cout<<"\n4. Search for a specific customer";
 cout<<"\n5. Room check-out";
-cout<<"\n6. Guest Summary Report";
+cout<<"\n6. List of guests present";
 cout<<"\n7. Exit";
-cout<<"\n\nEnter Option: ";
+cout<<"\n\nEnter Option : ";
 cin>>opt;
 switch(opt)
 {
@@ -396,10 +390,11 @@ case 6:
 hm.guestSummaryReport();	
 break;
 case 7:
-cout<<"\nTHANK YOU!";
+cout<<"\nWe would love to have you again.\nTHANK YOU!";
 break;
 default:
-cout<<"\nPlease enter a correct option";
+cout<<"\nYou have chosen an incorrect option. Please try again.";
+getch();
 break;
 }
 }while(opt!=7);
